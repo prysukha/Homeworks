@@ -1,0 +1,45 @@
+---
+- name: Install common packages
+  hosts: backend
+  become: yes #to run tasks with sudo
+
+  tasks:
+   - name: Update package cache
+     apt:
+       update_cache: yes
+     when: ansible_os_family == 'Debian' #Use 'yum' for Red Hat based systems
+
+   - name: Add hillel user and put in sudo group 
+     ansible.builtin.user:
+       name: hillel
+       password: "{{  'password' | password_hash('sha512', 'hillel') }}"
+       groups:
+         - sudo
+         - adm
+       state: "present"
+       shell: "/bin/bash"
+       home: "/home/demo"
+       create_home: true
+     become: true
+
+   - name: Install Nginx
+     package:
+       name: nginx
+       state: latest
+
+   - name: Start Nginx
+     service:
+       name: nginx
+       state: restarted
+       enabled: yes
+
+
+   - name: Install Git
+     package:
+       name: git
+       state: latest
+
+   - name: Install Zip
+     package:
+       name: zip
+       state: latest 
