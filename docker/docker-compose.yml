@@ -1,0 +1,11 @@
+services:
+      070387flaskapp:
+            build:
+                context: .
+            
+            restart: always
+
+            ports: 
+              - 3000:5000
+            volumes:
+              - ./:/app
