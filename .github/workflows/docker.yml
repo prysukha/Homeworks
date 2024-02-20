@@ -22,8 +22,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       working-directory: docker
-      run: docker build . --file dockerfile --tag cicd-practice:$(date +%s)|
-            docker push 070387/git
+      run: docker build . --file dockerfile --tag cicd-practice:$(date +%s)
+        | docker push 070387/git
       
    
     
