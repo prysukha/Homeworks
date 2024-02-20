@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build and push Docker image
-      uses: mr-smithers-excellent/docker-build-push@v6
+      uses: mr-smithers-excellent/docker-build-push@v6.3
       with:
         image: 070387/homework-flask-0.0.2
         tags: latest
