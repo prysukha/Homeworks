@@ -22,12 +22,11 @@ jobs:
       with:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_PASSWORD}}
-
-    - name: build and push docker image to registry
+    - name: Build and push
       uses: docker/build-push-action@v5
       with:
           context: docker
           push: true
-          tags: latest
+          tags: 070387/git:v.0.1
     
 
