@@ -19,11 +19,5 @@ jobs:
       working-directory: docker
       run: docker build . --file docker/dockerfile -- tag cicd-practice:$(date +%s)
 
-    - name: Build and push Docker image
-      uses: mr-smithers-excellent/docker-build-push@v4
-      with:
-        image: 070387/cicd-practice:$(date +%s)
-        registry: docker.io
-        username: ${{ secrets.DOCKER_NAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+    
 
