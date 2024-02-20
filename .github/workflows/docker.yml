@@ -23,7 +23,7 @@ jobs:
         image: 070387/homework-flask-0.0.2
         tags: latest
         dockerfile: docker
-        registry: hub.docker.com
+        registry: docker.com
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
