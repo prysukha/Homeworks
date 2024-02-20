@@ -19,7 +19,7 @@ jobs:
       with:
         image: 070387/git
         tags: v1
-        dockerfile: docker
+        #dockerfile: docker
         registry: docker.io
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
