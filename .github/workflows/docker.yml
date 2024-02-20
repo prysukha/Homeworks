@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      working-direktory: docker
+      working-directory: docker
       run: docker build . --file docker/dockerfile -- tag cicd-practice:$(date +%s)
 
     - name: Build and push Docker image
