@@ -18,8 +18,7 @@ jobs:
     - name: Build the Docker image
       working-directory: docker
       run: docker build . --file dockerfile --tag cicd-practice:$(date +%s)
-
-   - name: Build and push Docker image
+    - name: Build and push Docker image
       uses: mr-smithers-excellent/docker-build-push@v4
       with:
         image: 070387/cicd-practice:$(date +%s)
