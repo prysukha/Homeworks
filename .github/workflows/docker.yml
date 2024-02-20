@@ -23,7 +23,7 @@ jobs:
         dockerfile: docker
         registry: docker.io
         username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASWWORD }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
       
    
     
