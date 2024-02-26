@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic
+  namespace: petclinic
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: 070387/spring-petclinic:latest
+        ports:
+        - containerPort: 8080          
+          name: web
+        env:
+        - name: JDBC_URL
+          value: jdbc:postgresql://postgres.postgres.svc.local:5432/petclinic
+        - name: PETCLINIC_JDBC_USER
+          value: petclinic
+        - name: PETCLINIC_JDBC_PASSWORD
+          value: "12345678"          
+        volumeMounts:
+        - mountPath: /bindings/secret
+          name: petclinic
+          readOnly: false
+      volumes:
+      - name: petclinic
+        persistentVolumeClaim:
+          claimName: petclinic
+        
