@@ -21,11 +21,20 @@ spec:
           name: web
         env:
         - name: JDBC_URL
-          value: jdbc:postgresql://postgres.postgres.svc.local:5432/petclinic
+          valueFrom:
+            secretKeyRef:
+              name: petclinic-secret
+              key: JDBC_URL
         - name: PETCLINIC_JDBC_USER
-          value: petclinic
+          valueFrom:
+            secretKeyRef:
+              name: petclinic-secret
+              key: PETCLINIC_JDBC_USER
         - name: PETCLINIC_JDBC_PASSWORD
-          value: "12345678"          
+          valueFrom:
+            secretKeyRef:
+              name: petclinic-secret
+              key: PETCLINIC_JDBC_PASSWORD          
         volumeMounts:
         - mountPath: /bindings/secret
           name: petclinic
