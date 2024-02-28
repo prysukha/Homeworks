@@ -1,7 +1,7 @@
 receivers:
   - name: 'telegram'
     webhook_configs:
-      - url: 'https://api.telegram.org/bot7181861872:AAHA8x6a40jrtZqYU5JvSSFOi7c-MJHMxiU/sendMessage?chat_id=462685961&text=DockerContainerUsage CPU load 87%'
+      - url: 'https://api.telegram.org/bot<bot_token>/sendMessage?chat_id=<chat_id>&text=DockerContainerUsage CPU load 87%'
 route:
   receiver: 'telegram'
   group_wait: 30s
