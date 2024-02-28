@@ -29,12 +29,12 @@ spec:
           valueFrom:
             secretKeyRef:
               name: postgres-secret
-              key: POSTRGRESS_USER
+              key: POSTGRESS_USER
         - name: POSTGRESS_PASSWORD
           valueFrom:
             secretKeyRef:
               name: postgres-secret
-              key: POSRGRESS_PASSWORD
+              key: POSTGRESS_PASSWORD
         volumeMounts:
         - name: db
           mountPath: /var/lib/postgresql/data/pgdata
