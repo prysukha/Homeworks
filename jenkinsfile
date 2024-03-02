@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_REGISTRY = "docker.io"
+        DOCKER_IMAGE_NAME = "yourdockerimagename"
+    }
+    triggers {
+        pollSCM('*/5 * * * *')
+    }
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    def gitBranch = env.BRANCH_NAME
+                    def dockerTag = "${DOCKER_IMAGE_NAME}:${gitBranch}"
+                    echo "Building Docker image ${dockerTag}"
+                    docker.build(dockerTag)
+                }
+            }
+        }
+        stage('Push') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_id', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                        docker.withRegistry('https://www.docker.com/', 'DOCKERHUB_id') {
+                            def dockerTag = "${DOCKER_IMAGE_NAME}:${env.BRANCH_NAME}"
+                            dockerImage.push(dockerTag)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
