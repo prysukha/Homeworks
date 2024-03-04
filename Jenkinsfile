@@ -34,9 +34,11 @@ pipeline {
 }
 
 def updateGitHubCommitStatus(status) {
-    sh """
-        curl -u username:password -H 'Content-Type: application/json' -X POST \
-        -d '{"state": "${status}", "context": "Jenkins", "description": "Docker image build status"}' \
-        https://api.github.com/repos/prysukha/Homeworks/statuses/\${GIT_COMMIT}
-    """
+    withCredentials([string(credentialsId: 'your-github-token', variable: 'GITHUB_TOKEN')]) {
+        sh """
+            curl -u username:${GITHUB_TOKEN} -H 'Content-Type: application/json' -X POST \
+            -d '{"state": "${status}", "context": "Jenkins", "description": "Docker image build status"}' \
+            https://api.github.com/repos/prysukha/Homeworks/statuses/\${GIT_COMMIT}
+      """
+      }
 }
