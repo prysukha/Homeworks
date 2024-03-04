@@ -1,4 +1,4 @@
-pipeline {
+vpipeline {
     agent any
 
     triggers {
@@ -6,14 +6,14 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE_NAME = '070387/jenkins'
+        DOCKER_IMAGE_NAME = '070387'
     }
 
     stages {
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    def gitBranch = BRANCH_NAME
+                    def gitBranch =env.BRANCH_NAME
                     def dockerTag = "${DOCKER_IMAGE_NAME}:${gitBranch}"
                     echo "Building Docker image ${dockerTag}"
                     
