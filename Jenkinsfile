@@ -37,6 +37,6 @@ def updateGitHubCommitStatus(status) {
     sh """
         curl -u username:password -H 'Content-Type: application/json' -X POST \
         -d '{"state": "${status}", "context": "Jenkins", "description": "Docker image build status"}' \
-        https://api.github.com/repos/yourusername/yourrepository/statuses/\${GIT_COMMIT}
+        https://api.github.com/repos/prysukha/Homeworks/statuses/\${GIT_COMMIT}
     """
 }
