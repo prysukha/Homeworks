@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh "sudo docker build -t 070387 docker"
+                sh "docker build -t 070387 docker"
             }
         }
     }
