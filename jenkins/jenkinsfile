@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'worker'
+    }
     environment {
         DOCKER_REGISTRY = "docker.io"
         DOCKER_IMAGE_NAME = "070387/jenkins"
@@ -12,5 +14,7 @@ pipeline {
             steps {
                 sh "sudo docker build -t 070387 docker"
             }
-        
+        }
+    }
 }
+
