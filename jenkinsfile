@@ -16,7 +16,7 @@ pipeline {
                     def gitBranch = env.BRANCH_NAME
                     def dockerTag = "${DOCKER_IMAGE_NAME}:${gitBranch}"
                     echo "Building Docker image ${dockerTag}"
-                    docker.build(dockerTag)
+                    docker.build("-t ${dockerTag} .")
                 }
             }
         }
