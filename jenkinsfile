@@ -14,7 +14,8 @@ pipeline {
             steps {
                 script {
                     def gitBranch =env.GIT_BRANCH
-                    def dockerTag = "${DOCKER_IMAGE_NAME}:${gitBranch}"
+                    def branchName = gitBranch.substring(gitBranch.lastIndexOf('/') + 1)
+                    def dockerTag = "${DOCKER_IMAGE_NAME}:${branchName}"
                     echo "Building Docker image ${dockerTag}"
                     
                     withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_id', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
