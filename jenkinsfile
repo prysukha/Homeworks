@@ -13,7 +13,7 @@ pipeline {
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    def gitBranch = env.GIT_BRANCH
+                    def gitBranch = BRANCH_NAME
                     def dockerTag = "${DOCKER_IMAGE_NAME}:${gitBranch}"
                     echo "Building Docker image ${dockerTag}"
                     
