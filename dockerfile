@@ -9,7 +9,7 @@ RUN mkdir -p /home/alex/.ssh
 	#chmod 700 /home/alex/.ssh && \
 	#chmod 600 /home/alex/.ssh/authorized_keys
 RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
-RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_confi
 
 
 CMD ["/usr/sbin/sshd", "-D"]
